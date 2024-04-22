@@ -16,11 +16,16 @@ void replaceWord(char *str, const char *newWord, const char *oldWord) {
     }
 }
 
-int main() {
-    char script[10000];
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+        return 1;
+    }
 
-    // Read Python script from file
-    FILE *file = fopen("temp.csi", "r");
+    char script[10000];
+    char *filename = argv[1];
+
+    FILE *file = fopen(filename, "r");
     if (file == NULL) {
         fprintf(stderr, "Error opening file\n");
         return 1;
@@ -28,7 +33,6 @@ int main() {
     fread(script, sizeof(script), 1, file);
     fclose(file);
 
-    // Replace words
     replaceWord(script, "def", "conjure");
     replaceWord(script, "class", "coven");
     replaceWord(script, "import", "summon");
@@ -50,7 +54,6 @@ int main() {
     replaceWord(script, "or", "disjoin");
     replaceWord(script, "not", "negate");
 
-    // Write modified script to a temporary file
     FILE *tempFile = fopen("temp_script.py", "w");
     if (tempFile == NULL) {
         fprintf(stderr, "Error creating temporary file\n");
@@ -59,10 +62,8 @@ int main() {
     fputs(script, tempFile);
     fclose(tempFile);
 
-    // Run the modified script using Python
     system("python temp_script.py");
 
-    // Delete the temporary file
     remove("temp_script.py");
 
     return 0;
