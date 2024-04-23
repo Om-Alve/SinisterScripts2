@@ -1,1 +1,2 @@
-scream("Hello world")
+haunt i in range(5):
+    print("HEllo world")
