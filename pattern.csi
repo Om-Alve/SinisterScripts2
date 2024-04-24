@@ -1,0 +1,5 @@
+    scream("")
+        scream("*",end='')
+    haunt j in range(n):
+haunt i in range(n):
+n = int(summon("Enter n"))
