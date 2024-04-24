@@ -1,8 +1,0 @@
-        
-    haunt i in range(3):
-    // check rows 
-conjure game_over(board):
-// scream(board)       
-    board.append(['-','-','-'])
-haunt i in range(3):
-board = []
